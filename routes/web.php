@@ -14,6 +14,17 @@ use App\Livewire\Admin\Game\ListGames;
 use App\Livewire\Admin\Question\ListQuestions;
 use App\Livewire\Admin\Question\CreateQuestion;
 use App\Livewire\Admin\Settings;
+use App\Livewire\User\Game\Create as GameCreate;
+use App\Livewire\User\Game\MyGames;
+use App\Livewire\User\Game\Play;
+use App\Livewire\User\Game\Join;
+use App\Livewire\User\Game\Details;
+use App\Livewire\User\Wallet\Deposit;
+use App\Livewire\User\Wallet\Withdraw;
+use App\Livewire\User\Wallet\Transactions;
+use App\Livewire\User\Profile\View as ProfileView;
+use App\Livewire\User\Profile\Edit as ProfileEdit;
+use App\Livewire\User\Security\ChangePassword;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,6 +37,34 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
         Route::get('home', [HomeController::class, 'home'])->name('home');
+});
+
+Route::middleware(['auth', 'role:regular'])->prefix('user')->name('user.')->group(function () {
+
+    // Route::get('/dashboard', function () {
+    //     return view('user.dashboard');
+    // })->name('dashboard');
+
+    Route::get('/dashboard', UserDashboard::class)->name('dashboard');
+
+    // Game Routes
+    Route::get('/games/create', GameCreate::class)->name('games.create');
+    Route::get('/games/my', MyGames::class)->name('games.my');
+    Route::get('/games/{game}/play', Play::class)->name('games.play');
+    Route::get('/games/{game}/join', Join::class)->name('games.join');
+    Route::get('/games/{game}', Details::class)->name('games.details');
+
+    // Wallet Routes
+    Route::get('/wallet/deposit', Deposit::class)->name('wallet.deposit');
+    Route::get('/wallet/withdraw', Withdraw::class)->name('wallet.withdraw');
+    Route::get('/wallet/transactions', Transactions::class)->name('wallet.transactions');
+
+    // Profile & Security Routes
+    // Route::get('/profile', ProfileView::class)->name('settings');
+    Route::get('/profile', ProfileView::class)->name('profile.view');
+    Route::get('/profile/edit', ProfileEdit::class)->name('profile.edit');
+    Route::get('/profile/change-password', ChangePassword::class)->name('profile.password');
+
 });
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {

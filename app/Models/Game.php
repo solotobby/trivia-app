@@ -15,21 +15,28 @@ class Game extends Model
         'number_of_questions',
         'is_premium',
         'amount',
+        'status',
+        'created_by',
+        'duration_in_minutes',
     ];
 
+
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->game_id = 'GAME-' . strtoupper(Str::random(9));
+        });
+    }
     public function category()
     {
         return $this->belongsTo(GameCategory::class, 'game_category_id');
     }
 
-
-protected static function boot()
-{
-    parent::boot();
-
-    static::creating(function ($model) {
-        $model->game_id = 'GAME-'.strtoupper(Str::random(9));
-    });
-}
-
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 }
