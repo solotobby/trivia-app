@@ -32,8 +32,6 @@ class ListCategories extends Component
         $this->categoryId = $category->id;
         $this->name = $category->name;
         $this->description = $category->description;
-
-        $this->dispatchBrowserEvent('show-edit-category-modal');
     }
 
     public function updateCategory()
@@ -45,17 +43,13 @@ class ListCategories extends Component
         $category->description = $this->description;
         $category->save();
 
-        $this->dispatchBrowserEvent('close-edit-category-modal');
-        $this->reset(['name', 'description', 'categoryId']);
-        $this->loadCategories();
-
         session()->flash('message', 'Category updated successfully!');
+        return redirect()->route('admin.categories.index');
     }
 
     public function confirmDelete($categoryId)
     {
         $this->categoryId = $categoryId;
-        $this->dispatchBrowserEvent('show-delete-confirmation-modal');
     }
 
     public function deleteCategory()
@@ -63,10 +57,9 @@ class ListCategories extends Component
         $category = GameCategory::findOrFail($this->categoryId);
         $category->delete();
 
-        $this->dispatchBrowserEvent('close-delete-confirmation-modal');
-        $this->loadCategories();
 
         session()->flash('message', 'Category deleted successfully!');
+        return redirect()->route('admin.categories.index');
     }
 
     public function render()

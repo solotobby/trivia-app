@@ -10,10 +10,16 @@
         </div>
 
         @if(session()->has('message'))
-            <div class="alert alert-success">
-                {{ session('message') }}
-            </div>
-        @endif
+        <div
+            x-data="{ show: true }"
+            x-init="setTimeout(() => show = false, 3000)"
+            x-show="show"
+            x-transition
+            class="alert alert-success"
+        >
+            {{ session('message') }}
+        </div>
+    @endif
 
         <div class="block-content">
             <table class="table table-borderless table-vcenter">
@@ -34,13 +40,13 @@
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->description }}</td>
                             <td>{{ $category->game_category_id }}</td>
-                            <td>{{ $category->user->name }}</td>
+                            <td>{{ $category->user->name ?? 'Unknown Admin'}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#modal-fadein" wire:click="openEditModal({{ $category->id }})">
                                         <i class="fa fa-pencil-alt"></i>
                                     </button>
-                                    <button type="button" class="btn btn-sm btn-secondary" wire:click="confirmDelete({{ $category->id }})">
+                                    <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" wire:click="confirmDelete({{ $category->id }})">
                                         <i class="fa fa-times"></i>
                                     </button>
                                 </div>
@@ -115,29 +121,11 @@
 
 @push('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        window.addEventListener('show-edit-category-modal', event => {
-            var modalElement = document.getElementById('modal-fadein');
-            var modal = new bootstrap.Modal(modalElement);
-            modal.show();
-        });
-
-        window.addEventListener('close-edit-category-modal', event => {
-            var modalElement = document.getElementById('modal-fadein');
-            var modal = bootstrap.Modal.getInstance(modalElement);
-            modal.hide();
-        });
-
-        window.addEventListener('show-delete-confirmation-modal', event => {
-            var modalElement = document.getElementById('deleteConfirmationModal');
-            var modal = new bootstrap.Modal(modalElement);
-            modal.show();
-        });
-
-        window.addEventListener('close-delete-confirmation-modal', event => {
-            var modalElement = document.getElementById('deleteConfirmationModal');
-            var modal = bootstrap.Modal.getInstance(modalElement);
-            modal.hide();
+    window.addEventListener('close-modal', () => {
+        const modals = document.querySelectorAll('.modal.show');
+        modals.forEach(modal => {
+            const modalInstance = bootstrap.Modal.getInstance(modal);
+            if (modalInstance) modalInstance.hide();
         });
     });
 </script>

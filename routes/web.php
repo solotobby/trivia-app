@@ -28,8 +28,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('home', [HomeController::class, 'home'])->name('home');
 });
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('home/admin', AdminDashboard::class)->name('admin');
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
+    Route::get('dashboard', AdminDashboard::class)->name('admin');
       // Categories
       Route::get('/categories', ListCategories::class)->name('admin.categories.index');
       Route::get('/categories/create', CreateCategory::class)->name('admin.categories.create');
