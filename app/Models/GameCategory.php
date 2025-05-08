@@ -10,7 +10,8 @@ class GameCategory extends Model
     protected $fillable = [
         'game_category_id',
         'name',
-        'description'
+        'description',
+        'created_by'
     ];
 
     public function games()
@@ -18,6 +19,10 @@ class GameCategory extends Model
         return $this->hasMany(Game::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 
 protected static function boot()
 {
