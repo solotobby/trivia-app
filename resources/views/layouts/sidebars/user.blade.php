@@ -6,7 +6,27 @@
           <span class="nav-main-link-name">Dashboard</span>
         </a>
       </li>
-     
+
+      <li class="nav-main-item">
+        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+          <span class="nav-main-link-name">Alt Dashboards</span>
+        </a>
+        <ul class="nav-main-submenu">
+          <li class="nav-main-item">
+            <a class="nav-main-link" href="db_classic.html">
+              <span class="nav-main-link-name">Classic</span>
+            </a>
+          </li>
+          <li class="nav-main-item">
+            <a class="nav-main-link" href="db_clean.html">
+              <span class="nav-main-link-name">Clean</span>
+            </a>
+          </li>
+          <li class="nav-main-item">
+            <a class="nav-main-link" href="db_social.html">
+              <span class="nav-main-link-name">Social</span>
+            </a>
+          </li>
       {{-- <li class="nav-main-item">
         <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
           <i class="nav-main-link-icon fa fa-award"></i>

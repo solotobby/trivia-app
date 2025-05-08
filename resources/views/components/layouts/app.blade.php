@@ -493,7 +493,7 @@
             <!-- END Side User -->
 
             @if(auth()->user()->hasRole('admin'))
-                @include('layouts.sidebars.user')
+                @include('layouts.sidebars.admin')
             @else
             <!-- Side Navigation -->
                 @include('layouts.sidebars.user')
@@ -520,8 +520,8 @@
       <main id="main-container">
         <!-- Page Content -->
         {{ $slot }}
-        
-        
+
+
         <!-- END Page Content -->
       </main>
       <!-- END Main Container -->
@@ -546,7 +546,7 @@
     <!-- Page JS Code -->
     <script src="{{ asset('assets/js/pages/be_pages_dashboard.min.js')}}"></script>
 
-  
+
   </body>
 </html>
 
