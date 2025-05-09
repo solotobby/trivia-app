@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Livewire\Admin\Game;
+namespace App\Livewire\User\Game;
 
 use App\Models\Game;
 use App\Models\GameCategory;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class ListGames extends Component
+class AllGames extends Component
 {
     use WithPagination;
 
@@ -28,7 +28,6 @@ class ListGames extends Component
 
         $categories = GameCategory::all();
 
-
-        return view('livewire.admin.game.list-games', compact('games', 'categories'));
+        return view('livewire.user.game.all-games', compact('games', 'categories'));
     }
 }

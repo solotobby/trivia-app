@@ -1,7 +1,13 @@
 <div class="block block-rounded">
-    <div class="block-header block-header-default">
+
+    <div class="block-header d-flex justify-content-between align-items-center">
         <h3 class="block-title">All Games</h3>
+        <a href="{{ route('user.games.create') }}" class="btn btn-sm btn-primary">
+            <i class="fa fa-plus-circle"></i> Create Game
+        </a>
+
     </div>
+
     <div class="block-content">
 
         {{-- Filters --}}
@@ -25,44 +31,41 @@
                 </select>
             </div>
         </div>
+
+        {{-- Table --}}
         <div class="table-responsive">
             <table class="table table-bordered table-striped table-vcenter">
-                <thead class="table-light">
+                <thead>
                     <tr>
-                        <th>#</th>
                         <th>Name</th>
-                        <th>Players</th>
-                        <th>Questions</th>
-                        <th>Premium</th>
+                        <th>Category</th>
+                        <th>Premium?</th>
                         <th>Amount</th>
+                        <th>Status</th>
                         <th>Created By</th>
                         <th>Created At</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($games as $index => $game)
+                    @forelse($games as $game)
                         <tr>
-                            <td>{{ $index + 1 }}</td>
                             <td>{{ $game->name }}</td>
-                            <td>{{ $game->number_of_players }}</td>
-                            <td>{{ $game->number_of_questions }}</td>
-                            <td>
-                                <span class="badge {{ $game->is_premium ? 'bg-success' : 'bg-secondary' }}">
-                                    {{ $game->is_premium ? 'Yes' : 'No' }}
-                                </span>
-                            </td>
-                            <td>{{ $game->is_premium ? '₦' . number_format($game->amount, 2) : '-' }}</td>
-                            <td>{{ $game->user->name ?? 'N/A' }}</td>
-                            <td>{{ $game->created_at->format('d M, Y H:i') }}</td>
+                            <td>{{ $game->category->name ?? '-' }}</td>
+                            <td>{{ $game->is_premium ? 'Yes' : 'No' }}</td>
+                            <td>{{ $game->amount ?? '-' }}</td>
+                            <td>{{ ucfirst($game->status) }}</td>
+                            <td>{{ $game->creator->name ?? 'Admin' }}</td>
+                            <td>{{ $game->created_at->diffForHumans() }}</td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="8" class="text-center text-muted">No games found.</td>
+                            <td colspan="9" class="text-center text-muted">No game found.</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
+
         {{-- Pagination --}}
         <div class="mt-3">
             {{ $games->links() }}

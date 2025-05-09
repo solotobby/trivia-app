@@ -15,17 +15,27 @@
             <a class="nav-main-link nav-main-link-submenu {{ request()->routeIs('user.games.*') ? 'active' : '' }}"
                 data-toggle="submenu" href="#">
                 <i class="nav-main-link-icon fa fa-gamepad"></i>
-                <span class="nav-main-link-name">My Games</span>
+                <span class="nav-main-link-name">Games</span>
             </a>
             <ul class="nav-main-submenu">
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="{{ route('user.games.my') }}">
-                        View All
+                    <a class="nav-main-link" href="{{ route('user.games.index') }}">
+                        All Games
                     </a>
                 </li>
                 <li class="nav-main-item">
                     <a class="nav-main-link" href="{{ route('user.games.create') }}">
-                        Create New
+                        Create Game
+                    </a>
+                </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link" href="{{ route('user.games.create') }}">
+                        My Games
+                    </a>
+                </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link" href="{{ route('user.games.create') }}">
+                        Game History
                     </a>
                 </li>
             </ul>
@@ -58,14 +68,14 @@
         </li>
 
 
-        <!-- Game History -->
+        {{-- <!-- Game History -->
         <li class="nav-main-item">
             <a class="nav-main-link {{ request()->routeIs('user.games.my') ? 'active' : '' }}"
                 href="{{ route('user.games.my') }}">
                 <i class="nav-main-link-icon fa fa-history"></i>
                 <span class="nav-main-link-name">Game History</span>
             </a>
-        </li>
+        </li> --}}
 
         <!-- Settings -->
         <li class="nav-main-item">

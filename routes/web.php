@@ -14,6 +14,7 @@ use App\Livewire\Admin\Game\ListGames;
 use App\Livewire\Admin\Question\ListQuestions;
 use App\Livewire\Admin\Question\CreateQuestion;
 use App\Livewire\Admin\Settings;
+use App\Livewire\User\Game\AllGames;
 use App\Livewire\User\Game\Create as GameCreate;
 use App\Livewire\User\Game\MyGames;
 use App\Livewire\User\Game\Play;
@@ -36,7 +37,7 @@ Route::get('/', function () {
 
 
 Route::middleware(['auth'])->group(function () {
-        Route::get('home', [HomeController::class, 'home'])->name('home');
+        Route::get('home', [HomeController::class, 'home'])->name('user.home');
 });
 
 Route::middleware(['auth', 'role:regular'])->prefix('user')->name('user.')->group(function () {
@@ -48,6 +49,7 @@ Route::middleware(['auth', 'role:regular'])->prefix('user')->name('user.')->grou
     Route::get('/dashboard', UserDashboard::class)->name('dashboard');
 
     // Game Routes
+    Route::get('/games', AllGames::class)->name('games.index');
     Route::get('/games/create', GameCreate::class)->name('games.create');
     Route::get('/games/my', MyGames::class)->name('games.my');
     Route::get('/games/{game}/play', Play::class)->name('games.play');
