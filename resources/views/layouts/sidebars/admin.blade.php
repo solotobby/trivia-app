@@ -71,11 +71,11 @@
                         View All
                     </a>
                 </li>
-                <li class="nav-main-item">
+                {{-- <li class="nav-main-item">
                     <a class="nav-main-link" href="{{ route('admin.questions.create') }}">
                         Add New
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </li>
 
@@ -1252,4 +1252,4 @@
         </ul>
       </li> --}}
 
-    
+
