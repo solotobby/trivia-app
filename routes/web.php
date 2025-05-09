@@ -5,6 +5,7 @@ use App\Livewire\Admin\AdminDashboard;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
+use App\Livewire\User\Game\CreateQuestions;
 use App\Livewire\User\UserDashboard;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Admin\Category\ListCategories;
@@ -12,7 +13,6 @@ use App\Livewire\Admin\Category\CreateCategory;
 use App\Livewire\Admin\User\ListUsers;
 use App\Livewire\Admin\Game\ListGames;
 use App\Livewire\Admin\Question\ListQuestions;
-use App\Livewire\Admin\Question\CreateQuestion;
 use App\Livewire\Admin\Settings;
 use App\Livewire\User\Game\AllGames;
 use App\Livewire\User\Game\Create as GameCreate;
@@ -20,6 +20,7 @@ use App\Livewire\User\Game\MyGames;
 use App\Livewire\User\Game\Play;
 use App\Livewire\User\Game\Join;
 use App\Livewire\User\Game\Details;
+use App\Livewire\User\Games\CreateQuestion;
 use App\Livewire\User\Wallet\Deposit;
 use App\Livewire\User\Wallet\Withdraw;
 use App\Livewire\User\Wallet\Transactions;
@@ -55,6 +56,8 @@ Route::middleware(['auth', 'role:regular'])->prefix('user')->name('user.')->grou
     Route::get('/games/{game}/play', Play::class)->name('games.play');
     Route::get('/games/{game}/join', Join::class)->name('games.join');
     Route::get('/games/{game}', Details::class)->name('games.details');
+    Route::get('/games/{game}/questions/create', CreateQuestions::class)->name('games.questions.create');
+   // Route::get('/games/{game}/questions/create', CreateQuestion::class)->name('games.questions.create');
 
     // Wallet Routes
     Route::get('/wallet/deposit', Deposit::class)->name('wallet.deposit');
@@ -83,7 +86,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 
       // Questions
       Route::get('/questions', ListQuestions::class)->name('admin.questions.index');
-      Route::get('/questions/create', CreateQuestion::class)->name('admin.questions.create');
+     // Route::get('/questions/create', CreateQuestion::class)->name('admin.questions.create');
 
       // Settings
       Route::get('/settings', Settings::class)->name('admin.settings');

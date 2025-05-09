@@ -88,7 +88,7 @@
                                         step="0.01" min="0" placeholder="0.00">
                                 </div>
                                 @error('amount')
-                                    <small class="text-danger">{{ $message }}</small>
+                                    {{-- <small class="text-danger">{{ $message }}</small> --}}
                                 @enderror
                             </div>
                         @endif

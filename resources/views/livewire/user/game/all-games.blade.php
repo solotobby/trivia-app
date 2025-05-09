@@ -48,7 +48,8 @@
                 </thead>
                 <tbody>
                     @forelse($games as $game)
-                        <tr>
+                        <tr onclick="window.location='{{ route('user.games.details', $game->id) }}'"
+                            style="cursor: pointer;">
                             <td>{{ $game->name }}</td>
                             <td>{{ $game->category->name ?? '-' }}</td>
                             <td>{{ $game->is_premium ? 'Yes' : 'No' }}</td>
@@ -63,6 +64,7 @@
                         </tr>
                     @endforelse
                 </tbody>
+
             </table>
         </div>
 
@@ -71,4 +73,10 @@
             {{ $games->links() }}
         </div>
     </div>
+    <style>
+        tr[onclick]:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+
 </div>

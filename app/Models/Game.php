@@ -39,4 +39,14 @@ class Game extends Model
     {
         return $this->belongsTo(User::class, 'created_by');
     }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
+
+    public function players()
+    {
+        return $this->hasMany(Player::class);
+    }
 }

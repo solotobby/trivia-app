@@ -1,5 +1,6 @@
 <?php
 namespace App\Livewire\User\Game;
+
 use App\Models\Game;
 use App\Models\GameCategory;
 use Illuminate\Support\Facades\Auth;
