@@ -52,7 +52,7 @@
                                 </span>
                             </td>
                             <td>{{ $game->is_premium ? '₦' . number_format($game->amount, 2) : '-' }}</td>
-                            <td>{{ $game->user->name ?? 'N/A' }}</td>
+                            <td>{{ $game->creator->name ?? 'N/A' }}</td>
                             <td>{{ $game->created_at->format('d M, Y H:i') }}</td>
                         </tr>
                     @empty

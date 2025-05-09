@@ -5,9 +5,22 @@
         </div>
 
         <div class="block-content">
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <input type="text" wire:model.debounce.500ms="search" class="form-control" placeholder="Search users by name or email...">
+            </div> --}}
+
+              <!-- Search -->
+          <div class="block pull-t pull-x">
+            <div class="block-content block-content-full block-content-sm bg-body-light">
+                <div class="input-group">
+                  <input type="text" class="form-control"  placeholder="Search users by name or email...">
+                  <button type="submit" wire:model.debounce.500ms="search" class="btn btn-secondary">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div>
             </div>
+          </div>
+          <!-- END Search -->
 
             <table class="table table-borderless table-vcenter">
                 <thead>
