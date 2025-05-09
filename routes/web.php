@@ -30,7 +30,7 @@ use App\Livewire\User\Security\ChangePassword;
 
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
+})->name('welcome');
 
 // Route::view('dashboard', 'dashboard')
 //     ->middleware(['auth', 'verified'])
@@ -38,7 +38,7 @@ Route::get('/', function () {
 
 
 Route::middleware(['auth'])->group(function () {
-        Route::get('home', [HomeController::class, 'home'])->name('user.home');
+        Route::get('home', [HomeController::class, 'home'])->name('home');
 });
 
 Route::middleware(['auth', 'role:regular'])->prefix('user')->name('user.')->group(function () {
@@ -47,7 +47,7 @@ Route::middleware(['auth', 'role:regular'])->prefix('user')->name('user.')->grou
     //     return view('user.dashboard');
     // })->name('dashboard');
 
-    Route::get('/dashboard', UserDashboard::class)->name('dashboard');
+   // Route::get('/dashboard', UserDashboard::class)->name('dashboard');
 
     // Game Routes
     Route::get('/games', AllGames::class)->name('games.index');
@@ -93,7 +93,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 });
 
 Route::middleware(['auth', 'role:regular'])->group(function () {
-    Route::get('home/user', UserDashboard::class)->name('regular');
+    Route::get('user/dashboard', UserDashboard::class)->name('regular');
 
 });
 
