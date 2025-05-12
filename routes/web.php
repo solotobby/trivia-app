@@ -47,7 +47,7 @@ Route::middleware(['auth', 'role:regular'])->prefix('user')->name('user.')->grou
     //     return view('user.dashboard');
     // })->name('dashboard');
 
-   // Route::get('/dashboard', UserDashboard::class)->name('dashboard');
+   Route::get('/dashboard', UserDashboard::class)->name('dashboard');
 
     // Game Routes
     Route::get('/games', AllGames::class)->name('games.index');
@@ -92,10 +92,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
       Route::get('/settings', Settings::class)->name('admin.settings');
 });
 
-Route::middleware(['auth', 'role:regular'])->group(function () {
-    Route::get('user/dashboard', UserDashboard::class)->name('regular');
+// Route::middleware(['auth', 'role:regular'])->group(function () {
+//     Route::get('user/dashboard', UserDashboard::class)->name('regular');
 
-});
+// });
 
 
 // Route::middleware(['auth'])->group(function () {
