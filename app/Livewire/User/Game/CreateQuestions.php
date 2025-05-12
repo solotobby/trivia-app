@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class CreateQuestions extends Component
 {
+    public $gameId;
     public $game;
     public string $text = '';
     public array $options = ['', '', '', ''];
@@ -21,7 +22,9 @@ class CreateQuestions extends Component
 
     public function mount($game)
     {
+        
         $this->game = Game::all();
+       
     }
 
     public function create()

@@ -17,6 +17,7 @@ class Details extends Component
      */
     public function mount($game)
     {
+        dd($this->game);
         // Check if $game is an ID (integer or string) or a Game model
         if (is_object($game) && $game instanceof Game) {
             $this->game = $game;
